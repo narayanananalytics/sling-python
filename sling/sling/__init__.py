@@ -357,7 +357,8 @@ class Replication:
           streams: Dict[str, Union[ReplicationStream, dict]] = {},
           env: dict={},
           debug=False,
-          file_path: str=None
+          file_path: str=None,
+          temp_file: str=None
   ):
     self.source: str = source
     self.target: str = target
@@ -381,6 +382,7 @@ class Replication:
     self.debug = debug
 
     self.file_path = file_path
+    self.temp_file = temp_file
 
   def add_streams(self, streams: Dict[str, ReplicationStream]):
     self.streams.update(streams)
@@ -590,7 +592,8 @@ def _run(cmd: str, temp_file: str, return_output=False, env:dict=None, stdin=Non
       else:
         print(line, flush=True)
     
-    os.remove(temp_file)
+    if temp_file:
+      os.remove(temp_file)
 
   except Exception as E:
     print(f'config file for debugging: {temp_file}')
