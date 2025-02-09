@@ -3,7 +3,7 @@ from setuptools import setup
 from setuptools import find_packages
 
 
-SLING_VERSION = '0.0.0dev'
+SLING_VERSION = '1.4.2'
 
 version_path = pathlib.Path(os.path.join(os.path.dirname(__file__), 'VERSION'))
 if version_path.exists():
